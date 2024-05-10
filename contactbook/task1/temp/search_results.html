@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+</head>
+<body>
+    <h1>Search Results</h1>
+    <div id="results">
+        {% if results %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <!-- Add more fields as necessary -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for contact in results %}
+                        <tr>
+                            <td>{{ contact[1] }}</td> <!-- Assuming name is in the second column -->
+                            <td>{{ contact[2] }}</td> <!-- Assuming email is in the third column -->
+                            <td>{{ contact[3] }}</td> <!-- Assuming phone is in the fourth column -->
+                            <!-- Add more columns as necessary -->
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No contacts found with the provided name.</p>
+        {% endif %}
+    </div>
+    <a href="/search">Back to Search</a>
+    <a href="/">Back to Home</a>
+</body>
+</html>
