@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Contact</title>
+</head>
+<body>
+    <h1>Edit Contact</h1>
+    <form action="/update">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" value="{{ contact['name'] }}"><br>
+        <label for="phone">Phone:</label><br>
+        <input type="text" id="phone" name="phone" value="{{ contact['phone'] }}"><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" value="{{ contact['email'] }}"><br>
+        <label for="address">Address:</label><br>
+        <textarea id="address" name="address">{{ contact['address'] }}</textarea><br><br>
+        <input type="submit" value="Update">
+    </form>
+</body>
+</html>

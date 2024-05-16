@@ -63,6 +63,9 @@ def search():
         search_results = address_book.search_contact(search_name)
         return render_template('search_results.html', results=search_results)
     return render_template('search.html')
+@app.route("/update")
+def update():
+    return render_template('Update_contact.html')
 
 @app.route("/edit/<int:id>", methods=["GET", "POST"])
 def edit_contact(id):
@@ -94,17 +97,14 @@ def edit_contact(id):
                 return "Contact not found"
         except Exception as e:
             return f"An error occurred: {str(e)}"
-@app.route("/delete")
-def delete():
-    return render_template("Delete.html")
-@app.route("/deleterecord", methods=["GET", "POST"])
-def deleterec():
+@app.route("/delete", methods=["GET", "POST"])
+def delete_contact():
     if request.method == "POST":
         try:
-            id = request.form["id"]
+            name = request.form["name"]
             with sqlite3.connect("contact.db") as con:
                 cur = con.cursor()
-                cur.execute("DELETE FROM contactdetails WHERE id = ?", (id,))
+                cur.execute("DELETE FROM contactdetails WHERE name = ?", (name,))
                 con.commit()
                 msg = "Contact successfully deleted"
         except Exception as e:
@@ -112,6 +112,12 @@ def deleterec():
         finally:
             return render_template("delete_record.html", msg=msg)
     return render_template("Delete.html")
+
+@app.route("/deleterecord")
+def delete():
+    return render_template("delete_record.html")
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
